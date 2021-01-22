@@ -8,8 +8,7 @@ class BlogService {
   }
 
   async createBlog(blogData) {
-    const res = await api.post('api/blogs', blogData)
-    console.log(res)
+    await api.post('api/blogs', blogData)
     this.getBlogs()
   }
 }

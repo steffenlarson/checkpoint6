@@ -4,8 +4,10 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">
-              {{ blogProp.title }}
+            <h4 class="card-title title">
+              <router-link :to="{name: 'BlogDetailsPage', params: {id: blogProp.id}}">
+                {{ blogProp.title }}
+              </router-link>
             </h4>
             <p class="card-text">
               {{ blogProp.creator.name }}
@@ -32,5 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.title {
+  cursor: pointer;
+}
 </style>

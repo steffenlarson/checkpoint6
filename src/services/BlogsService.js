@@ -7,6 +7,11 @@ class BlogService {
     AppState.blogs = res.data
   }
 
+  async getOne(id) {
+    const res = await api.get(id)
+    AppState.activeBlog = res.data
+  }
+
   async createBlog(blogData) {
     await api.post('api/blogs', blogData)
     this.getBlogs()

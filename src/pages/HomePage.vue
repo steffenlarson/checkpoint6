@@ -1,10 +1,38 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" class="image-fluid" alt="CodeWorks Logo">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">The Blogs</span>
-    </h1>
-    <div>
+    <div class="row">
+      <h1 class="my-3 bg-dark text-light p-3 rounded d-flex align-items-center">
+        <span class="mx-2 text-white">The Blogs</span>
+      </h1>
+    </div>
+    <div class="row">
+      <form action="" @submit.prevent="createBlog">
+        <div class="form-group">
+          <label for=""></label>
+          <input type="text"
+                 class="form-control"
+                 name="Title"
+                 id="title"
+                 aria-describedby="helpId"
+                 placeholder="Blog Title"
+                 v-model="state.newBlog.title"
+          >
+          <input type="text"
+                 class="form-control"
+                 name="Content"
+                 id="body"
+                 aria-describedby="helpId"
+                 placeholder="Write yer blog ere mate"
+                 v-model="state.newBlog.body"
+          >
+          <button class=" btn btn-success" type="submit">
+            Submit Blog
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
       <BlogComponent v-for="blog in state.blogs" :key="blog.id" :blog-prop="blog" />
     </div>
   </div>
@@ -19,7 +47,8 @@ export default {
   name: 'Home',
   setup() {
     const state = reactive({
-      blogs: computed(() => AppState.blogs)
+      blogs: computed(() => AppState.blogs),
+      newBlog: {}
     })
     onMounted(async() => {
       try {
@@ -29,7 +58,15 @@ export default {
       }
     })
     return {
-      state
+      state,
+      async createBlog() {
+        try {
+          await blogsService.createBlog(state.newBlog)
+          state.newBlog = {}
+        } catch (error) {
+          logger.error(error)
+        }
+      }
     }
   }
 }

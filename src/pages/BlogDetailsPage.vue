@@ -1,14 +1,24 @@
 <template>
   <div class="BlogDetailsPage container-fluid">
-    <p>Welcome and hello from blog details</p>
+    <div class="row">
+      <div class="col">
+        <h3>{{ activeBlog.title }}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>The body of the blog will go here</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { blogsService } from '../services/BlogsService'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger'
+import { AppState } from '../AppState'
 
 export default {
   name: 'BlogDetailsPage',
@@ -16,12 +26,15 @@ export default {
     const route = useRoute()
     onMounted(async() => {
       try {
+        // REVIEW I think the problem is with the params
         await blogsService.getOne(route.params.id)
       } catch (error) {
         logger.error(error)
       }
     })
-    return {}
+    return {
+      activeBlog: computed(() => AppState.activeBlog)
+    }
   },
   components: {}
 }

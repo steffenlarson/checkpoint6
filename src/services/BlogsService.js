@@ -8,7 +8,8 @@ class BlogService {
   }
 
   async getOne(id) {
-    const res = await api.get(id)
+    const res = await api.get('api/blogs/' + id)
+    // console.log(res
     AppState.activeBlog = res.data
   }
 

@@ -15,7 +15,10 @@
             <button v-if="state.account.id == blogProp.creatorId" @click="deleteBlog">
               trash me
             </button>
-            <button v-if="state.account.id == blogProp.creatorId" @click="state.editBlog">
+            <!-- REVIEW Do I want a modal? How would I pop up a form if I wanted to edit the body of what I am editing? -->
+            <button v-if="state.account.id == blogProp.creatorId" @click="editBlog">
+              <!-- REVIEW It changed my title to the inner text here. How do I create a variable or prop to dynamically change it. So that they do not all appear as change me? -->
+              <!-- REVIEW modal here too? to pop up a form to input the new data? -->
               change me
             </button>
           </div>

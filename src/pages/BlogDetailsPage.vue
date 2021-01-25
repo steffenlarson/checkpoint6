@@ -18,22 +18,12 @@
       />
     </div>
     <div class="row" v-if="state.user.isAuthenticated">
-      <form action="" @submit.prevent="createComment">
-        <div class="form-group">
-          <label for=""></label>
-          <input type="text"
-                 class="form-control"
-                 name="Content"
-                 id="body"
-                 aria-describedby="helpId"
-                 placeholder="Comment ere if ye dare"
-                 v-model="state.newComment.body"
-          >
-          <button class=" btn btn-success" type="submit">
-            Submit Comment
-          </button>
-        </div>
-      </form>
+      <div class="col">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+          Add a comment
+        </button>
+        <QuickModal />
+      </div>
     </div>
   </div>
 </template>
@@ -71,15 +61,15 @@ export default {
     // })
     return {
       state,
-      activeBlog: computed(() => AppState.activeBlog),
-      async createComment() {
-        try {
-          await blogsService.createComment(state.newComment)
-          state.newComment = {}
-        } catch (error) {
-          logger.error(error)
-        }
-      }
+      activeBlog: computed(() => AppState.activeBlog)
+      // async createComment() {
+      //   try {
+      //     await blogsService.createComment(state.newComment)
+      //     state.newComment = {}
+      //   } catch (error) {
+      //     logger.error(error)
+      //   }
+      // }
     }
   }
 

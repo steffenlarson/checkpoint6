@@ -13,6 +13,9 @@
     <div class="row comments-section">
       <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
     </div>
+    <div class="row">
+      <button>Add comment</button>
+    </div>
   </div>
 </template>
 
@@ -39,6 +42,14 @@ export default {
         logger.error(error)
       }
     })
+    // REVIEW need to grab all of the comments that have the blog id that matches the current blog where is a good example of this?
+    // onMounted(async() => {
+    //   try {
+    //     await blogsService.getCommentsByBlogId(blog)
+    //   } catch (error) {
+    //     logger.error(error)
+    //   }
+    // })
     return {
       state,
       activeBlog: computed(() => AppState.activeBlog)

@@ -27,7 +27,6 @@
 
 <script>
 import { computed, reactive } from 'vue'
-
 import { blogsService } from '../services/BlogsService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'

@@ -19,7 +19,8 @@
             </button>
           </div>
           <div class="modal-body">
-            <!-- REVIEW I am getting a 404 bad request on submission of modal. So the comment is not going through. Is my path wrong? -->
+            <!-- REVIEW I am getting a 404 bad request on submission of modal. So the comment is not going through. Is my path wrong?
+            Need to also pass the parameters for the route. the Id of the blog.-->
             <form class="form-inline" @submit.prevent="createComment">
               <div class="form-group">
                 <input type="text"
@@ -59,7 +60,9 @@
 import { logger } from '../utils/Logger'
 import { reactive } from 'vue'
 import { blogsService } from '../services/BlogsService'
+
 export default {
+
   name: 'QuickModal',
   setup() {
     const state = reactive({

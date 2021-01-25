@@ -53,25 +53,11 @@ export default {
         logger.error(error)
       }
     })
-    // REVIEW need to grab all of the comments that have the blog id that matches the current blog where is a good example of this?
-    // onMounted(async() => {
-    //   try {
-    //
-    //   } catch (error) {
-    //     logger.error(error)
-    //   }
-    // })
+
     return {
       state,
       activeBlog: computed(() => AppState.activeBlog)
-      // async createComment() {
-      //   try {
-      //     await blogsService.createComment(state.newComment)
-      //     state.newComment = {}
-      //   } catch (error) {
-      //     logger.error(error)
-      //   }
-      // }
+
     }
   }
 

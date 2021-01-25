@@ -1,6 +1,6 @@
 <template>
   <div class="CommentComponent container-fluid">
-    <p>THIS IS A comment</p>
+    <p>{{ commentProp.body }}</p>
     <div class="row">
       <button v-if="state.account.id == commentProp.creatorId" @click="deleteComment">
         Trash me
@@ -39,7 +39,7 @@ export default {
         }
       },
       // REVIEW need help with the edits. Trying to target it by id. Need a form
-      editComment(e) {
+      editComment() {
         logger.log('editing the blog', e.target.innerText)
         try {
           blogsService.editComment(props.commentProp.id, e.target.innerText)

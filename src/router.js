@@ -21,6 +21,12 @@ const routes = [
     name: 'BlogDetailsPage',
     component: loadPage('BlogDetailsPage')
   },
+  // REVIEW do I need a different path here in the router for the comments? I do.
+  // {
+  //   path: '/comments/:id',
+  //   name: 'BlogDetailsPage',
+  //   component: loadPage('BlogDetailsPage')
+  // },
   {
     path: '/account',
     name: 'Account',

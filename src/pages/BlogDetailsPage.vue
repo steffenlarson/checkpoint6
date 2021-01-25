@@ -12,8 +12,9 @@
     </div>
     <div class="row">
       <!-- REVIEW I cannot get the component to load in. Need blog in the key? nothing is appearing because nothing is in the appstate.comments -->
+      <!-- Need to grab all the comments for the current blog. -->
       <CommentComponent v-for="comment in state.comments"
-                        :key="comment.id"
+                        :key="comment.blog"
                         :comment-prop="comment"
       />
     </div>
@@ -54,7 +55,7 @@ export default {
     // REVIEW need to grab all of the comments that have the blog id that matches the current blog where is a good example of this?
     // onMounted(async() => {
     //   try {
-    //     await blogsService.getCommentsByBlogId(blog)
+    //     await blogsService.getCommentsByBlogId(id)
     //   } catch (error) {
     //     logger.error(error)
     //   }

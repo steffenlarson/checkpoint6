@@ -1,5 +1,6 @@
 <template>
   <div class="CommentComponent">
+    <p>THIS IS A comment</p>
   </div>
 </template>
 

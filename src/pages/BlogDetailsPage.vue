@@ -10,11 +10,14 @@
         <p>{{ activeBlog.body }}</p>
       </div>
     </div>
+    <div class="row comments-section">
+      <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { blogsService } from '../services/BlogsService'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger'
@@ -24,6 +27,11 @@ export default {
   name: 'BlogDetailsPage',
   setup() {
     const route = useRoute()
+    const state = reactive({
+      comments: computed(() => AppState.comments),
+      newComment: {},
+      user: computed(() => AppState.user)
+    })
     onMounted(async() => {
       try {
         await blogsService.getOne(route.params.id)
@@ -32,6 +40,7 @@ export default {
       }
     })
     return {
+      state,
       activeBlog: computed(() => AppState.activeBlog)
     }
   },

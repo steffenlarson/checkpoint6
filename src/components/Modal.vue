@@ -19,6 +19,7 @@
             </button>
           </div>
           <div class="modal-body">
+            <!-- REVIEW I am getting a 404 bad request on submission of modal. So the comment is not going through. Is my path wrong? -->
             <form class="form-inline" @submit.prevent="createComment">
               <div class="form-group">
                 <input type="text"
@@ -69,6 +70,7 @@ export default {
       async createComment() {
         try {
           await blogsService.createComment(state.newComment)
+          state.newComment = {}
         } catch (error) {
           logger.error(error)
         }

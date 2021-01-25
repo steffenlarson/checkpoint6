@@ -23,7 +23,7 @@ class BlogService {
     this.getBlogs()
   }
 
-  // REVIEW need help with editing. Need to take the submission of new data and overwrite the old data. Both the title and the body.
+  // REVIEW need help with editing. Need to take the submission of new data and overwrite the old data. Both the title and the body. Form
   async editBlog(blogId, newTitle) {
     const blogData = { title: newTitle }
     await api.put('api/blogs/' + blogId, blogData)
@@ -31,6 +31,7 @@ class BlogService {
   }
 
   // REVIEW instead of grabbing all of the comments, I just need to grab the comments where the blog id property on the comment matches the current blogs id.
+  // REVIEW where did we do this before? I could not find it at all.
   async getCommentsByBlogId(blog) {
 
   }

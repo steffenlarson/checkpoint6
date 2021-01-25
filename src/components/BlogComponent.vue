@@ -53,7 +53,7 @@ export default {
           logger.error(error)
         }
       },
-      // REVIEW need help with the edits
+      // REVIEW need help with the edits. I know that I need to overwrite the data, but I am really fuzzy on how to grab the new data and overwrite it and submit it.
       editBlog(e) {
         logger.log('editing the blog', e.target.innerText)
         try {

@@ -23,24 +23,25 @@ class BlogService {
     this.getBlogs()
   }
 
+  // REVIEW need help with editing. Need to take the submission of new data and overwrite the old data. Both the title and the body.
   async editBlog(blogId, newTitle) {
     const blogData = { title: newTitle }
     await api.put('api/blogs/' + blogId, blogData)
     this.getBlogs()
   }
 
-  // REVIEW instead of grabbing all of the comments, i just need to grab the comments where the blog id property on the comment matches the current blogs id.
+  // REVIEW instead of grabbing all of the comments, I just need to grab the comments where the blog id property on the comment matches the current blogs id.
   async getCommentsByBlogId(blog) {
 
   }
 
-  // REVIEW need to create a comment.
+  // REVIEW need to create a comment. Do I need to pass the blog Id for it too?
   async createComment(commentData) {
     await api.post('api/comments/', commentData)
     this.getCommentsByBlogId()
   }
 
-  // REVIEW need delete and edit comments.
+  // REVIEW need delete and edit comments. First I need to get and post comments...
   async deleteComment(commentId) {
     await api.delete('api/comments/' + commentId)
     this.getCommentsByBlogId()

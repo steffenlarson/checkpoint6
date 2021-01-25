@@ -13,8 +13,11 @@
 </template>
 
 <script>
+import { reactive, computed } from 'vue'
 import { blogsService } from '../services/BlogsService'
+import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
+
 export default {
 
   name: 'CommentComponent',
@@ -22,10 +25,14 @@ export default {
     commentProp: { type: Object, required: true }
   },
   setup(props) {
+    const state = reactive({
+      account: computed(() => AppState.account)
+    })
     return {
+      state,
       deleteComment() {
         try {
-          blogsService.deleteComment(props.blogProp.id)
+          blogsService.deleteComment(props.commentProp.id)
         } catch (error) {
           logger.error(error)
         }
@@ -34,7 +41,7 @@ export default {
       editComment(e) {
         logger.log('editing the blog', e.target.innerText)
         try {
-          blogsService.editComment(props.blogProp.id, e.target.innerText)
+          blogsService.editComment(props.commentProp.id, e.target.innerText)
         } catch (error) {
           logger.error(error)
         }

@@ -10,11 +10,30 @@
         <p>{{ activeBlog.body }}</p>
       </div>
     </div>
-    <div class="row comments-section">
-      <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
-    </div>
     <div class="row">
-      <button>Add comment</button>
+      <!-- REVIEW I cannot get the component to load in. Need blog in the key? nothing is appearing because nothing is in the appstate.comments -->
+      <CommentComponent v-for="comment in state.comments"
+                        :key="comment.id"
+                        :comment-prop="comment"
+      />
+    </div>
+    <div class="row" v-if="state.user.isAuthenticated">
+      <form action="" @submit.prevent="createComment">
+        <div class="form-group">
+          <label for=""></label>
+          <input type="text"
+                 class="form-control"
+                 name="Content"
+                 id="body"
+                 aria-describedby="helpId"
+                 placeholder="Comment ere if ye dare"
+                 v-model="state.newComment.body"
+          >
+          <button class=" btn btn-success" type="submit">
+            Submit Comment
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -52,10 +71,18 @@ export default {
     // })
     return {
       state,
-      activeBlog: computed(() => AppState.activeBlog)
+      activeBlog: computed(() => AppState.activeBlog),
+      async createComment() {
+        try {
+          await blogsService.createComment(state.newComment)
+          state.newComment = {}
+        } catch (error) {
+          logger.error(error)
+        }
+      }
     }
-  },
-  components: {}
+  }
+
 }
 </script>
 

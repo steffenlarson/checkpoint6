@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <p>The body of the blog will go here</p>
+        <p>{{ activeBlog.body }}</p>
       </div>
     </div>
   </div>
@@ -26,7 +26,6 @@ export default {
     const route = useRoute()
     onMounted(async() => {
       try {
-        // REVIEW I think the problem is with the params
         await blogsService.getOne(route.params.id)
       } catch (error) {
         logger.error(error)

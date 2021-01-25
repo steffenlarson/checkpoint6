@@ -9,12 +9,23 @@ class BlogService {
 
   async getOne(id) {
     const res = await api.get('api/blogs/' + id)
-    // console.log(res
+    // console.log(res)
     AppState.activeBlog = res.data
   }
 
   async createBlog(blogData) {
     await api.post('api/blogs', blogData)
+    this.getBlogs()
+  }
+
+  async deleteBlog(id) {
+    await api.delete('api/blogs/' + id)
+    this.getBlogs()
+  }
+
+  async editBlog(blogId, newTitle) {
+    const blogData = { title: newTitle }
+    await api.put('api/blogs/' + blogId, blogData)
     this.getBlogs()
   }
 }

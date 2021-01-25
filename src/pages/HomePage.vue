@@ -5,7 +5,7 @@
         <span class="mx-2 text-white">The Blogs</span>
       </h1>
     </div>
-    <div class="row">
+    <div class="row" v-if="state.user.isAuthenticated">
       <form action="" @submit.prevent="createBlog">
         <div class="form-group">
           <label for=""></label>
@@ -48,7 +48,8 @@ export default {
   setup() {
     const state = reactive({
       blogs: computed(() => AppState.blogs),
-      newBlog: {}
+      newBlog: {},
+      user: computed(() => AppState.user)
     })
     onMounted(async() => {
       try {

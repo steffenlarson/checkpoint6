@@ -6,7 +6,7 @@
         Trash me
       </button>
       <!--REVIEW Why use state.edit comment??? Need to add a form to add new/ change content? -->
-      <button v-if="state.account.id == commentProp.creatorId" @click="state.editComment">
+      <button v-if="state.account.id == commentProp.creatorId" @click="editComment">
         Change me
       </button>
     </div>

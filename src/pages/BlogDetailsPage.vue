@@ -48,6 +48,7 @@ export default {
     onMounted(async() => {
       try {
         await blogsService.getOne(route.params.id)
+        await blogsService.getCommentsByBlogId(route.params.id)
       } catch (error) {
         logger.error(error)
       }
@@ -55,7 +56,7 @@ export default {
     // REVIEW need to grab all of the comments that have the blog id that matches the current blog where is a good example of this?
     // onMounted(async() => {
     //   try {
-    //     await blogsService.getCommentsByBlogId(id)
+    //
     //   } catch (error) {
     //     logger.error(error)
     //   }

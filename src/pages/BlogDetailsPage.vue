@@ -4,6 +4,37 @@
       <div class="col">
         <h3>{{ activeBlog.title }}</h3>
       </div>
+      <div class="col">
+        <!-- REVIEW Make a form, on submit call the function editblog. Then add a toggle hide and show based on a button press.
+            Need to pass the id of the blog. how do I do that? params? -->
+        <!-- <button v-if="state.account.id == blogProp.creatorId" @click="editBlog"> -->
+        <div class="row" v-if="state.user.isAuthenticated">
+          <form action="" @submit.prevent="editBlog">
+            <div class="form-group">
+              <label for=""></label>
+              <input type="text"
+                     class="form-control"
+                     name="Title"
+                     id="title"
+                     aria-describedby="helpId"
+                     placeholder="Blog Title"
+                     v-model="activeBlog.title"
+              >
+              <input type="text"
+                     class="form-control"
+                     name="Content"
+                     id="body"
+                     aria-describedby="helpId"
+                     placeholder="Write yer blog ere mate"
+                     v-model="activeBlog.body"
+              >
+              <button class=" btn btn-success" type="submit">
+                Submit Blog
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col">
@@ -11,8 +42,6 @@
       </div>
     </div>
     <div class="row">
-      <!-- REVIEW I cannot get the component to load in. Need blog in the key? nothing is appearing because nothing is in the appstate.comments -->
-      <!-- Need to grab all the comments for the current blog. -->
       <CommentComponent v-for="comment in state.comments"
                         :key="comment.blog"
                         :comment-prop="comment"
@@ -37,6 +66,7 @@ import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
 
 export default {
+
   name: 'BlogDetailsPage',
   setup() {
     const route = useRoute()
@@ -56,7 +86,16 @@ export default {
 
     return {
       state,
-      activeBlog: computed(() => AppState.activeBlog)
+      activeBlog: computed(() => AppState.activeBlog),
+      // REVIEW need help with the edits. I know that I need to overwrite the data, but I am really fuzzy on how to grab the new data and overwrite it and submit it.
+      editBlog() {
+        logger.log('editing the blog', this.activeBlog)
+        try {
+          blogsService.editBlog(this.activeBlog.id, this.activeBlog.title, this.activeBlog.body)
+        } catch (error) {
+          logger.error(error)
+        }
+      }
 
     }
   }

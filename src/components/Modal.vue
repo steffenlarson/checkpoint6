@@ -19,8 +19,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <!-- REVIEW I am getting a 404 bad request on submission of modal. So the comment is not going through. Is my path wrong?
-            Need to also pass the parameters for the route. the Id of the blog.-->
+            <!-- REVIEW Need to also pass the parameters for the route. the Id of the blog. Need to pass the blog id (active blog) in the payload.-->
             <form class="form-inline" @submit.prevent="createComment">
               <div class="form-group">
                 <input type="text"

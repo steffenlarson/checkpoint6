@@ -15,12 +15,10 @@
             <button v-if="state.account.id == blogProp.creatorId" @click="deleteBlog">
               trash me
             </button>
-            <!-- REVIEW Do I want a modal? How would I pop up a form if I wanted to edit the body of what I am editing? -->
-            <button v-if="state.account.id == blogProp.creatorId" @click="editBlog">
-              <!-- REVIEW It changed my title to the inner text here. How do I create a variable or prop to dynamically change it. So that they do not all appear as change me? -->
-              <!-- REVIEW modal here too? to pop up a form to input the new data? -->
-              change me
-            </button>
+
+            <!-- change me
+            </button> -->
+            <!-- </button> -->
           </div>
         </div>
       </div>
@@ -52,16 +50,8 @@ export default {
         } catch (error) {
           logger.error(error)
         }
-      },
-      // REVIEW need help with the edits. I know that I need to overwrite the data, but I am really fuzzy on how to grab the new data and overwrite it and submit it.
-      editBlog(e) {
-        logger.log('editing the blog', e.target.innerText)
-        try {
-          blogsService.editBlog(props.blogProp.id, e.target.innerText)
-        } catch (error) {
-          logger.error(error)
-        }
       }
+
     }
   },
   components: {}

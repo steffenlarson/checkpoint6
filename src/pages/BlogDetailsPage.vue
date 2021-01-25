@@ -12,24 +12,25 @@
           <form action="" @submit.prevent="editBlog">
             <div class="form-group">
               <label for=""></label>
+              <!-- REVIEW why are the input fields coming up as object object??? -->
               <input type="text"
                      class="form-control"
                      name="Title"
                      id="title"
                      aria-describedby="helpId"
-                     placeholder="Blog Title"
-                     v-model="activeBlog.title"
+                     placeholder="Title"
+                     v-model="state.updateBlog.title"
               >
               <input type="text"
                      class="form-control"
                      name="Content"
                      id="body"
                      aria-describedby="helpId"
-                     placeholder="Write yer blog ere mate"
-                     v-model="activeBlog.body"
+                     placeholder="Content"
+                     v-model="state.updateBlog.body"
               >
               <button class=" btn btn-success" type="submit">
-                Submit Blog
+                Edit Blog
               </button>
             </div>
           </form>
@@ -72,6 +73,11 @@ export default {
     const route = useRoute()
     const state = reactive({
       comments: computed(() => AppState.comments),
+      // do I want a computed here???
+      updateBlog: {
+        title: { Type: String, required: true },
+        body: { Type: String, required: true }
+      },
       newComment: {},
       user: computed(() => AppState.user)
     })
@@ -89,9 +95,9 @@ export default {
       activeBlog: computed(() => AppState.activeBlog),
       // REVIEW need help with the edits. I know that I need to overwrite the data, but I am really fuzzy on how to grab the new data and overwrite it and submit it.
       editBlog() {
-        logger.log('editing the blog', this.activeBlog)
+        logger.log('editing the blog', state.updateBlog)
         try {
-          blogsService.editBlog(this.activeBlog.id, this.activeBlog.title, this.activeBlog.body)
+          blogsService.editBlog(this.activeBlog.id, state.updateBlog)
         } catch (error) {
           logger.error(error)
         }

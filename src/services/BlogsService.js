@@ -25,16 +25,13 @@ class BlogService {
 
   // REVIEW need help with editing. Need to take the submission of new data and overwrite the old data. Both the title and the body. Form
   // do I need to include all the things that could be changed in the blogData variable?
-  async editBlog(blogId, newTitle) {
-    const blogData = { title: newTitle }
+  async editBlog(blogId, updateBlog) {
+    // debugger
+    const blogData = updateBlog
     await api.put('api/blogs/' + blogId, blogData)
-    this.getBlogs()
+    this.getOne()
   }
 
-  // REVIEW instead of grabbing all of the comments, I just need to grab the comments where the blog id property on the comment matches the current blogs id.
-  // REVIEW where did we do this before? I could not find it at all.
-  // I need to get comments based on the blog Id. I think I may have had things backwards. Blogs first, comments second in the search.
-  // need to move the function to the blog details page. not the comment component.
   async getCommentsByBlogId(id) {
     const res = await api.get('api/blogs/' + id + '/comments')
     AppState.comments = res.data

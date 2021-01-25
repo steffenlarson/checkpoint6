@@ -28,7 +28,7 @@
                        class="form-control"
                        placeholder="Enter Comment here"
                        aria-describedby="helpId"
-                       v-model="state.newComment.body"
+                       v-model="state.newComment"
                 >
                 <!-- <input type="text"
                        name="imgUrl"

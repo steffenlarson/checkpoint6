@@ -5,7 +5,7 @@
         <h3>{{ activeBlog.title }}</h3>
       </div>
       <div class="col">
-        <!-- REVIEW Make a form, on submit call the function editblog. Then add a toggle hide and show based on a button press.
+        <!-- NOTE Make a form, on submit call the function editblog. Then add a toggle hide and show based on a button press.
             Need to pass the id of the blog. how do I do that? params? -->
         <!-- <button v-if="state.account.id == blogProp.creatorId" @click="editBlog"> -->
         <div class="row" v-if="state.user.isAuthenticated">
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="row">
-      <!-- REVIEW this is what is passing the props along to the children. -->
+      <!-- NOTE this is what is passing the props along to the children. -->
       <CommentComponent v-for="comment in state.comments"
                         :key="comment.blog"
                         :comment-prop="comment"
@@ -95,7 +95,10 @@ export default {
     return {
       state,
       activeBlog: computed(() => AppState.activeBlog),
-      // REVIEW need help with the edits. I know that I need to overwrite the data, but I am really fuzzy on how to grab the new data and overwrite it and submit it.
+      // REVIEW need help with the edits. I know that I need to overwrite the data, but I am really fuzzy on how to grab the new data and
+      // overwrite it and submit it. Need to use the props. Where are they comming from exactly and how do I access them every time.
+      // Always start in the parent? and always get passed to the children?
+      // What is the difference between the req.params.variable, and the single object in the appstate? when do I use either or?
       editBlog() {
         logger.log('editing the blog', state.updateBlog)
         try {

@@ -25,7 +25,7 @@ class BlogService {
   }
 
   // REVIEW need help with editing. Need to take the submission of new data and overwrite the old data. Both the title and the body. Form
-  // do I need to include all the things that could be changed in the blogData variable?
+  // do I need to include all the things that could be changed in the blogData variable? The payload needs to come in as one thing. Not two separate.
   async editBlog(blogId, updateBlog) {
     // debugger
     const blogData = updateBlog
@@ -45,7 +45,7 @@ class BlogService {
     this.getCommentsByBlogId()
   }
 
-  // REVIEW need delete and edit comments. First I need to get and post comments...
+  // NOTE need delete and edit comments. First I need to get and post comments...
   async deleteComment(commentId) {
     await api.delete('api/comments/' + commentId)
     this.getCommentsByBlogId()

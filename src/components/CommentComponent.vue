@@ -5,7 +5,7 @@
       <button v-if="state.account.id == commentProp.creatorId" @click="deleteComment">
         Trash me
       </button>
-      <!--REVIEW Why use state.edit comment??? Need to add a form to add new/ change content? -->
+      <!--REVIEW Save question for later... Why use state.edit comment??? Need to add a form to add new/ change content? -->
       <button v-if="state.account.id == commentProp.creatorId" @click="editComment">
         Change me
       </button>
@@ -38,7 +38,9 @@ export default {
           logger.error(error)
         }
       }
-      // REVIEW need help with the edits. Trying to target it by id. Need a form
+      // REVIEW need help with the edits. Trying to target it by id. Need a form (2 way data binding)
+      // With edits we have to pass them the id and the payload. How do I access those with props?
+
       // editComment() {
       //   logger.log('editing the blog', e.target.innerText)
       //   try {

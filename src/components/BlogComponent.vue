@@ -40,13 +40,14 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      blog: computed(() => props.blogProp)
     })
     return {
       state,
       deleteBlog() {
         try {
-          blogsService.deleteBlog(props.blogProp.id)
+          blogsService.deleteBlog(state.blog.id)
         } catch (error) {
           logger.error(error)
         }

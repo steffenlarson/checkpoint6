@@ -76,10 +76,10 @@ export default {
     const route = useRoute()
     const state = reactive({
       comments: computed(() => AppState.comments),
-      // do I want a computed here???
+      //
       updateBlog: {
-        title: { Type: String, required: true },
-        body: { Type: String, required: true }
+        title: computed(() => AppState.activeBlog.title),
+        body: computed(() => AppState.activeBlog.body)
       },
       newComment: {},
       user: computed(() => AppState.user)

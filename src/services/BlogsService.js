@@ -40,10 +40,10 @@ class BlogService {
 
   // REVIEW need to create a comment. Right now it is passing the id for the blog it belongs to. I need the payload too.
   // how do I grab that? creating a comment is located in the modal.
-  async createComment(commentData, payload) {
+  async createComment(commentData) {
     logger.log('comment data', commentData)
     await api.post('api/comments/', commentData)
-    this.getCommentsByBlogId()
+    this.getCommentsByBlogId(commentData.blog)
   }
 
   // NOTE need delete and edit comments. First I need to get and post comments...

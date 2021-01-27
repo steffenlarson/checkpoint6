@@ -72,14 +72,17 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      newComment: {}
+      newComment: {
+        body: '',
+        blog: route.params.id
+      }
     })
     return {
       state,
       async createComment() {
         try {
-          await blogsService.createComment(route.params.id, state.newComment)
-          state.newComment = {}
+          await blogsService.createComment(state.newComment)
+          state.newComment.body = ''
         } catch (error) {
           logger.error(error)
         }

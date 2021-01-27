@@ -65,6 +65,10 @@ import { useRoute } from 'vue-router'
 export default {
 
   name: 'QuickModal',
+  // props: {
+  //   // REVIEW comment props wont work here becuase it is a sibling to comments on the blog details page?
+  //   commentProp: { type: Object }
+  // },
   setup() {
     const route = useRoute()
     const state = reactive({

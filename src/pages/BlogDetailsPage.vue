@@ -21,6 +21,7 @@
                      placeholder="Title"
                      v-model="state.updateBlog.title"
               >
+              <!-- The v-model is the 2 way data binding. and state.updateBlog.title is what is being submitted by this form. -->
               <input type="text"
                      class="form-control"
                      name="Content"
@@ -43,7 +44,7 @@
       </div>
     </div>
     <div class="row">
-      <!-- NOTE this is what is passing the props along to the children. -->
+      <!-- NOTE this is what is passing the props along to the children. Not abailable in modal? -->
       <CommentComponent v-for="comment in state.comments"
                         :key="comment.blog"
                         :comment-prop="comment"
@@ -54,6 +55,7 @@
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
           Add a comment
         </button>
+        <!-- REVIEW quick modal is a child of the blog details page? -->
         <QuickModal />
       </div>
     </div>

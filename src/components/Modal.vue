@@ -28,8 +28,9 @@
                        class="form-control"
                        placeholder="Enter Comment here"
                        aria-describedby="helpId"
-                       v-model="state.newComment"
+                       v-model="state.newComment.body"
                 >
+                <!-- FIXME the input somehow gets changed to a string instead of an object. -->
                 <!-- <input type="text"
                        name="imgUrl"
                        id="imgUrl"
@@ -59,11 +60,13 @@
 import { logger } from '../utils/Logger'
 import { reactive } from 'vue'
 import { blogsService } from '../services/BlogsService'
+import { useRoute } from 'vue-router'
 
 export default {
 
   name: 'QuickModal',
   setup() {
+    const route = useRoute()
     const state = reactive({
       newComment: {}
     })
@@ -71,7 +74,7 @@ export default {
       state,
       async createComment() {
         try {
-          await blogsService.createComment(state.newComment)
+          await blogsService.createComment(route.params.id, state.newComment)
           state.newComment = {}
         } catch (error) {
           logger.error(error)

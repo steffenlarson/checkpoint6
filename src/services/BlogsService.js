@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class BlogService {
@@ -38,7 +39,8 @@ class BlogService {
   }
 
   // REVIEW need to create a comment. Do I need to pass the blog Id for it too?
-  async createComment(commentData) {
+  async createComment(commentData, payload) {
+    logger.log('comment data', commentData)
     await api.post('api/comments/', commentData)
     this.getCommentsByBlogId()
   }

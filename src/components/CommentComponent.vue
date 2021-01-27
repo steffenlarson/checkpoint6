@@ -37,16 +37,16 @@ export default {
         } catch (error) {
           logger.error(error)
         }
-      },
-      // REVIEW need help with the edits. Trying to target it by id. Need a form
-      editComment() {
-        logger.log('editing the blog', e.target.innerText)
-        try {
-          blogsService.editComment(props.commentProp.id, e.target.innerText)
-        } catch (error) {
-          logger.error(error)
-        }
       }
+      // REVIEW need help with the edits. Trying to target it by id. Need a form
+      // editComment() {
+      //   logger.log('editing the blog', e.target.innerText)
+      //   try {
+      //     blogsService.editComment(props.commentProp.id, e.target.innerText)
+      //   } catch (error) {
+      //     logger.error(error)
+      //   }
+      // }
     }
   },
   components: {}

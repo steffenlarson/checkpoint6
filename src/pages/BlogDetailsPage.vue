@@ -43,6 +43,7 @@
       </div>
     </div>
     <div class="row">
+      <!-- REVIEW this is what is passing the props along to the children. -->
       <CommentComponent v-for="comment in state.comments"
                         :key="comment.blog"
                         :comment-prop="comment"
@@ -84,6 +85,7 @@ export default {
     onMounted(async() => {
       try {
         await blogsService.getOne(route.params.id)
+        logger.log(route.params.id)
         await blogsService.getCommentsByBlogId(route.params.id)
       } catch (error) {
         logger.error(error)
